@@ -57,3 +57,35 @@ class Mailing(models.Model):
         verbose_name = 'рассылка'
         verbose_name_plural = 'рассылки'
         ordering = ('name',)
+
+
+class Message(models.Model):
+    """Сообщение для рассылки"""
+    title = models.CharField(max_length=150, verbose_name='Заголовок')
+    text = models.TextField(verbose_name='Текст')
+
+    mailing_list = models.ForeignKey(Mailing, on_delete=models.CASCADE, verbose_name='Рассылка')
+
+    def __str__(self):
+        return f'{self.title}'
+
+    class Meta:
+        verbose_name = 'сообщение'
+        verbose_name_plural = 'сообщения'
+
+
+class Log(models.Model):
+    """Лог рассылки"""
+    time = models.DateTimeField(verbose_name='Дата и время попытки отправки', auto_now_add=True)
+    status = models.BooleanField(verbose_name='Статус попытки отправки')
+    server_response = models.CharField(max_length=150, verbose_name='Ответ сервера почтового сервиса', **NULLABLE)
+
+    mailing_list = models.ForeignKey(Mailing, on_delete=models.CASCADE, verbose_name='Рассылка')
+    client = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name='Клиент')
+
+    def __str__(self):
+        return f'{self.client} {self.mailing_list} {self.time} {self.status} {self.server_response}'
+
+    class Meta:
+        verbose_name = 'лог рассылки'
+        verbose_name_plural = 'логи рассылок'
