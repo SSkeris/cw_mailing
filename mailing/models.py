@@ -21,11 +21,13 @@ class Client(models.Model):
 
 class Mailing(models.Model):
     """Рассылка и её параметры"""
+    FIVE_MINUTES = "Каждые пять минут"
     DAILY = "Раз в день"
     WEEKLY = "Раз в неделю"
     MONTHLY = "Раз в месяц"
 
     PERIODICITY_CHOICES = [
+        (FIVE_MINUTES, "Каждые пять минут"),
         (DAILY, "Раз в день"),
         (WEEKLY, "Раз в неделю"),
         (MONTHLY, "Раз в месяц"),
@@ -42,12 +44,13 @@ class Mailing(models.Model):
     ]
 
     name = models.CharField(max_length=150, verbose_name='Название')
-    description = models.TextField(**NULLABLE, verbose_name='Описание')
+    description = models.TextField(**NULLABLE, verbose_name='Описание', help_text='не обязательное поле')
     status = models.CharField(max_length=150, choices=STATUS_CHOICES, default=CREATED, verbose_name='Статус')
     periodicity = models.CharField(max_length=150, choices=PERIODICITY_CHOICES,
                                    default=DAILY, verbose_name='Периодичность')
-    start_date = models.DateTimeField(verbose_name='Дата начала')
-    end_date = models.DateTimeField(verbose_name='Дата окончания')
+    start_date = models.DateTimeField(verbose_name='Дата начала', **NULLABLE,
+                                      help_text='(формат 11.05.2024) не обязательное поле')
+    end_date = models.DateTimeField(verbose_name='Дата окончания', **NULLABLE, help_text='не обязательное поле')
     clients = models.ManyToManyField(Client, verbose_name='Клиенты для рассылки')
 
     def __str__(self):
