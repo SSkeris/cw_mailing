@@ -6,16 +6,45 @@
 <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
 <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 
-<head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.122.0">
-    <title>Рассылки</title>
-
-</head>
+<header data-bs-theme="dark">
+  <div class="collapse text-bg-dark" id="navbarHeader">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 col-md-7 py-4">
+          <h4>Рассылки</h4>
+          <p class="text-body-secondary">Проект создан с целью обучения. На данном сайте можно сконструировать свою рассылку, использовать уже имеющиеся из списка, создавать тексты рассылок, редактировать их, так же добавлять клиентов для рассылок и редактировать их.</p>
+        </div>
+        <div class="col-sm-4 offset-md-1 py-4">
+          <h4>навигация</h4>
+          <ul class="list-unstyled">
+            <li><a class="me-3 py-2 link-body-emphasis text-decoration-none" href="/">Рассылки</a></li>
+            <li><a class="me-3 py-2 link-body-emphasis text-decoration-none"
+                   href="{% url 'mailing_form' %}">Создать рассылку</a></li>
+            <li><a class="me-3 py-2 link-body-emphasis text-decoration-none"
+                   href="{% url 'clients_list' %}">Клиенты</a></li>
+            <li><a class="py-2 link-body-emphasis text-decoration-none"
+                   href="{% url 'clients_form' %}">Создать клиента</a></li>
+            <li><a class="me-3 py-2 link-body-emphasis text-decoration-none"
+                   href="{% url 'message_list' %}">Сообщения</a></li>
+            <li><a class="py-2 link-body-emphasis text-decoration-none"
+                   href="{% url 'message_form' %}">Создать сообщение</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="navbar navbar-dark bg-dark shadow-sm">
+    <div class="container">
+      <a href="#" class="navbar-brand d-flex align-items-center">
+        <strong>mailing project</strong>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </div>
+</header>
 <body>
 
 <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
@@ -70,20 +99,6 @@
     </ul>
 </div>
 <div class="container py-3">
-
-    <header>
-        <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
-            <span class="fs-4">mailing project</span>
-            <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-                <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">Features</a>
-                <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">Enterprise</a>
-                <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">Support</a>
-                <a class="py-2 link-body-emphasis text-decoration-none" href="#">Pricing</a>
-            </nav>
-        </div>
-
-
-    </header>
 
     {% block content %}
     {% endblock %}
