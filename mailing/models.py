@@ -51,6 +51,7 @@ class Mailing(models.Model):
     start_date = models.DateTimeField(verbose_name='Дата начала', **NULLABLE,
                                       help_text='(формат 11.05.2024) не обязательное поле')
     end_date = models.DateTimeField(verbose_name='Дата окончания', **NULLABLE, help_text='не обязательное поле')
+
     clients = models.ManyToManyField(Client, verbose_name='Клиенты для рассылки')
 
     def __str__(self):

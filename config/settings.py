@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'mailing',
+    'django_apscheduler',
 ]
 
 MIDDLEWARE = [
@@ -130,3 +131,22 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = True
+EMAIL_HOST_USER = 'masamunoff@yandex.ru'
+EMAIL_HOST_PASSWORD = os.getenv('DJANGO_YANDEX')
+# EMAIL_HOST = 'smtp.mail.ru'
+# EMAIL_PORT = 2525
+# EMAIL_USE_TLS = True
+# EMAIL_USE_SSL = False
+# EMAIL_HOST_USER = 'paravozishe@internet.ru'
+# EMAIL_HOST_PASSWORD = os.getenv('CW_MAILING')
+
+APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
+APSCHEDULER_RUN_NOW_TIMEOUT = 25

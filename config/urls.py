@@ -24,5 +24,4 @@ from mailing.views import MailingListView
 urlpatterns = [
                   path('admin/', admin.site.urls),
                   path('', include('mailing.urls')),
-                  # path('', MailingListView.as_view(), name='base'),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
